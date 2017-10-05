@@ -71,6 +71,8 @@ cpdefine("inline:com-chilipeppr-workspace-drgrbl", ["chilipeppr_ready"], functio
             this.loadWidgets();
 
             //this.loadTemplateWidget();
+            
+            this.loadPubsubWidget();
 
             // Create our workspace upper right corner triangle menu
             this.loadWorkspaceMenu();
@@ -189,6 +191,31 @@ cpdefine("inline:com-chilipeppr-workspace-drgrbl", ["chilipeppr_ready"], functio
                 }
             );
         },
+        
+        /**
+         * pubsub widget
+         */
+        loadPubsubWidget: function(callback) {
+            chilipeppr.load(
+                "#com-chilipeppr-widget-pubsub-instance",
+                "http://raw.githubusercontent.com/chilipeppr/widget-pubsubviewer/master/auto-generated-widget.html",
+                function() {
+                    // Callback after widget loaded into #myDivElemPubsubviewer
+                    // Now use require.js to get reference to instantiated widget
+                    cprequire(
+                        ["inline:com-chilipeppr-elem-pubsubviewer"], // the id you gave your widget
+                        function(myObjElemPubsubviewer) {
+                            // Callback that is passed reference to the newly loaded widget
+                            console.log("Element / Pubsub Viewer just got loaded.", myObjElemPubsubviewer);
+                            myObjElemPubsubviewer.init();
+                            
+                            if (callback) callback(myObjElemPubsubviewer);
+                        }
+                    );
+                }
+            );
+        },
+                
         /**
          * Load the Serial Port JSON Server widget via chilipeppr.load()
          */

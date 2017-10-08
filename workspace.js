@@ -197,25 +197,23 @@ cpdefine("inline:com-chilipeppr-workspace-drgrbl", ["chilipeppr_ready"], functio
          */
         loadPubsubWidget: function(callback) {
             chilipeppr.load(
-                "#com-chilipeppr-widget-pubsub-instance",
-                "http://raw.githubusercontent.com/chilipeppr/widget-pubsubviewer/master/auto-generated-widget.html",
+                "#dr-widget-pubsubmonitor-instance",
+                "http://raw.githubusercontent.com/dagrende/widget-pubsubmonitor/master/auto-generated-widget.html",
                 function() {
-                    // Callback after widget loaded into #myDivElemPubsubviewer
+                    // Callback after widget loaded into #myDivDrWidgetPubsubmonitor
                     // Now use require.js to get reference to instantiated widget
                     cprequire(
-                        ["inline:com-chilipeppr-elem-pubsubviewer"], // the id you gave your widget
-                        function(myObjElemPubsubviewer) {
+                        ["inline:dr-widget-pubsubmonitor"], // the id you gave your widget
+                        function(myObjDrWidgetPubsubmonitor) {
                             // Callback that is passed reference to the newly loaded widget
-                            console.log("Element / Pubsub Viewer just got loaded.", myObjElemPubsubviewer);
-                            myObjElemPubsubviewer.init();
-                            
-                            if (callback) callback(myObjElemPubsubviewer);
+                            console.log("Widget / Pub-Sub Monitor just got loaded.", myObjDrWidgetPubsubmonitor);
+                            myObjDrWidgetPubsubmonitor.init();
                         }
                     );
                 }
             );
         },
-                
+                        
         /**
          * Load the Serial Port JSON Server widget via chilipeppr.load()
          */
